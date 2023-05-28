@@ -38,8 +38,6 @@ def index(request):
 
         suggestions = User.objects.exclude(pk__in=followings).exclude(username=request.user.username).exclude(username=admin_username).order_by("?")[:10]
 
-        suggestions = User.objects.exclude(pk__in=followings).exclude(username=request.user.username).exclude(username=admin_username).order_by("?")[:6]
-
     return render(request, "profileapp/index.html", {
         "posts": posts,
         "suggestions": suggestions,

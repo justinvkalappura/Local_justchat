@@ -57,25 +57,37 @@
         document.getElementById('g-recaptcha-error').innerHTML = '';
        } 
 
-       function validatee() {
-                
-                if (grecaptcha.getResponse() == "") {
-     
-                  document.getElementById('g-recaptcha-error').textContent = "Enter the Captcha";
-                      document.getElementById("g-recaptcha-error").style.color = "red";
-                      return false;
-                  }
-                  else if (grecaptcha.getResponse() == "") {
-                      alert(response)
-                      document.getElementById('g-recaptcha-error').innerHTML =
-                          '<span style="color:red;">This field is required.</span>';
-                      return false;
-                  }
-                  else {
-                      return true;
-                  }
-          }
+        function validatee() {
+            var username = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            
+            // Validate username and password
+            
+            if (username.trim() === '') {
+                alert('Please enter a username.');
+                return false;
+            }
+            else if (password.trim() === '') {
+                alert('Please enter a password.');
+                return false;
+            }
+            
+            else if (grecaptcha.getResponse() == "") {
+                document.getElementById('g-recaptcha-error').textContent = "Enter the Captcha";
+                document.getElementById("g-recaptcha-error").style.color = "red";
+                return false;
+            }
+            else if (grecaptcha.getResponse() == "") {
+                alert(response)
+                document.getElementById('g-recaptcha-error').innerHTML =
+                    '<span style="color:red;">This field is required.</span>';
+                return false;
+            }
+            else {
+                return true;
+            }
 
+        }
 
         document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll(".inp").forEach(input => {
